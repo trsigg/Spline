@@ -17,6 +17,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Python Project and notes
+*.iml
+*.xml
+*.nb
+
 # =========================
 # Operating System Files
 # =========================
