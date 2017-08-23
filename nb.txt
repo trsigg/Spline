@@ -1,0 +1,27 @@
+{{"i",Slider2D[Dynamic[i], {{-10, -10},{10,10}}], Dynamic[i]},
+{"f",Slider2D[Dynamic[f], {{-10, -10},{10,10}}], Dynamic[f]},
+{"\[Theta]i",Slider[Dynamic[ai],{-2Pi,2Pi}],Dynamic[ai]},
+{"\[Theta]f",Slider[Dynamic[af],{-2Pi,2Pi}],Dynamic[af]},
+{"b",Slider[Dynamic[b],{0,50}],Dynamic[b]},
+{"Dx",Dx=Dynamic[f[[1]]-i[[1]]]},
+{"Dy",Dy=Dynamic[f[[2]]-i[[2]]]},
+{"si",si=Dynamic[Tan[ai]]},
+{"sf",sf=Dynamic[Tan[af]]},
+{"a",a=Dynamic[Dx-b]},
+{"c",c=Dynamic[2Dx sf-2Dy+b(si-sf)]},
+{"d",d=Dynamic[3Dy-2Dx sf+b(sf-2si)]},
+Dynamic[ParametricPlot[{a t^2+b t+i[[1]],c t^3+d t^2+b si t+i[[2]]}, {t,0,1}]]}
+
+{Slider2D[Dynamic[i], {{-10, -10},{10,10}}],
+Slider2D[Dynamic[f], {{-10, -10},{10,10}}],
+Slider[Dynamic[ai],{-2Pi,2Pi}]
+Slider[Dynamic[af],{-2Pi,2Pi}],
+Slider[Dynamic[b],{0,50}],
+Dx=Dynamic[f[[1]]-i[[1]]],
+Dy=Dynamic[f[[2]]-i[[2]]],
+si=Dynamic[Tan[ai]],
+sf=Dynamic[Tan[af]],
+a=Dynamic[Dx-b],
+c=Dynamic[2Dx sf-2Dy+b(si-sf)],
+d=Dynamic[3Dy-2Dx sf+b(sf-2si)],
+Dynamic[ParametricPlot[{a t^2+b t+i[[1]],c t^3+d t^2+b si t+i[[2]]}, {t,0,1}]]}

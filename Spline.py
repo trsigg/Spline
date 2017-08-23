@@ -58,4 +58,44 @@ def spline(samples=100):
     plt.legend()
     plt.show()
 
-spline(1000)
+
+def partial_cubic_spline(b_vals, samples=100):
+    ends = []
+    Location = collections.namedtuple('Location', ['x', 'y', 'theta'])
+
+    for i in range(2):
+        x = float(input("X-value: "))
+        y = float(input("Y-value: "))
+        theta = float(input("Orientation: "))
+        ends.append(Location(x, y, theta))
+
+    # Calculate position changes and slopes
+    Dx = ends[1].x - ends[0].x
+    Dy = ends[1].y - ends[0].y
+    Si = math.tan(ends[0].theta * math.pi / 180)
+    Sf = math.tan(ends[1].theta * math.pi / 180)
+
+    for b in b_vals:
+        x1 = Dx - b
+        x2 = b
+        x3 = ends[0].x
+
+        y1 = 2 * Dx * Sf - 2 * Dy + b * (Si - Sf)
+        y2 = 3 * Dy - 2 * Dx * Sf + b * (Sf - 2 * Si)
+        y3 = b * Si
+        y4 = ends[0].y
+
+        # Add curve to plot
+        parametric_plot(lambda t: x1 * t**2 + x2 * t + x3,
+                        lambda t: y1 * t**3 + y2 * t**2 + y3 * t + y4,
+                        samples, b)
+        print("x1: %.4f, x2: %.4f, x3: %.4f" % (x1, x2, x3))
+        print("y1: %.4f, y2: %.4f, y3: %.4f, y4: %.4f" % (y1, y2, y3, y4))
+
+    plt.legend()
+    plt.show()
+
+
+#spline(1000)
+#spline(1000)
+partial_cubic_spline([0.1 * x**3 for x in range(-5, 6)], 1000)
